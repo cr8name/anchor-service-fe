@@ -1,0 +1,219 @@
+
+
+<!--
+<div class="mat-elevation-z8"> 
+  <mat-table  #table [dataSource]="dataSource">
+    <h2>Customer Information</h2>
+    
+    <ng-container matColumnDef="customer_id">
+      <th mat-header-cell *matHeaderCellDef> Customer ID </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.customer_id}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef> First Name </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.first_name}} </td>
+    </ng-container>
+  
+  
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef> Last Name </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.last_name}} </td>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef> Address </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="current_status">
+      <th mat-header-cell *matHeaderCellDef> Current Status </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.current_status}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date_created">
+      <th mat-header-cell *matHeaderCellDef> Date Created </th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.date_created}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="last_edited">
+      <th mat-header-cell *matHeaderCellDef> Last Edited</th>
+      <td mat-cell *matCellDef="let anchor"> {{anchor.last_edited}} </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let anchor; columns: displayedColumns;"></tr>
+
+  </mat-table>
+  
+</div>
+-->
+<body>
+  
+
+
+<div class="container">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="#">Utility Manager</a>
+    </div>
+  
+    <ul class="navbar-links">
+      <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+      <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
+      <li><a routerLink="/anchor/billing" routerLinkActive="active" ariaCurrentWhenActive="page">Billing</a></li>
+      <li><a routerLink="/anchor/utilities" routerLinkActive="active" ariaCurrentWhenActive="page">Utlities</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
+  </nav>
+    <!-- Flex container for form and table side by side -->
+    <div class="form-and-table">
+      
+      <!-- Form Section - Update Utilities -->
+      <div class="form-container">  
+     
+        <h2 class="navbar-padding">Update Utilities</h2>
+        <form (ngSubmit)="onSubmit()" #utilitiesForm="ngForm">
+          <div class="form-group">
+            <label for="customer_id">Customer ID</label>
+            <input type="text" id="customer_id" name="customer_id" [(ngModel)]="utilityData.customer_id" placeholder="Enter Customer ID" required>
+          </div>
+          <div class="form-group">
+            <label for="billing_date">Billing Date</label>
+            <input type="date" id="billing_date" name="billing_date" [(ngModel)]="utilityData.billing_date" required>
+          </div>
+          <div class="form-group">
+            <label for="electric_rate">Electric Rate</label>
+            <input type="number" id="electric_rate" name="electric_rate" [(ngModel)]="utilityData.electric_rate" step="0.01" placeholder="Enter Electric Rate" required>
+          </div>
+          <div class="form-group">
+            <label for="water_rate">Water Rate</label>
+            <input type="number" id="water_rate" name="water_rate" [(ngModel)]="utilityData.water_rate" step="0.01" placeholder="Enter Water Rate" required>
+          </div>
+          <div class="form-group">
+            <label for="rent_rate">Rent Rate</label>
+            <input type="number" id="rent_rate" name="rent_rate" [(ngModel)]="utilityData.rent_rate" step="0.01" placeholder="Enter Rent Rate" required>
+          </div>
+          <div class="form-group">
+            <label for="eprev_read">Previous Electric Reading</label>
+            <input type="number" id="eprev_read" name="eprev_read" [(ngModel)]="utilityData.eprev_read" placeholder="Enter Previous Electric Reading" required>
+          </div>
+          <div class="form-group">
+            <label for="ecurr_read">Current Electric Reading</label>
+            <input type="number" id="ecurr_read" name="ecurr_read" [(ngModel)]="utilityData.ecurr_read" placeholder="Enter Current Electric Reading" required>
+          </div>
+          <div class="form-group">
+            <label for="wprev_read">Previous Water Reading</label>
+            <input type="number" id="wprev_read" name="wprev_read" [(ngModel)]="utilityData.wprev_read" placeholder="Enter Previous Water Reading" required>
+          </div>
+          <div class="form-group">
+            <label for="wcurr_read">Current Water Reading</label>
+            <input type="number" id="wcurr_read" name="wcurr_read" [(ngModel)]="utilityData.wcurr_read" placeholder="Enter Current Water Reading" required>
+          </div>
+          <button type="submit" class="form-submit" [disabled]="!utilitiesForm.form.valid">Submit</button>
+        </form>
+      </div>
+
+      <!-- Table for Customer Information -->
+      <div class="table-container">
+        <h2>Customer Information</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Customer ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Address</th>
+              <th>Current Status</th>
+              <th>Date Created</th>
+              <th>Last Edited</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customers">
+              <td>{{ customer.customer_id }}</td>
+              <td>{{ customer.first_name }}</td>
+              <td>{{ customer.last_name }}</td>
+              <td>{{ customer.address }}</td>
+              <td>{{ customer.current_status }}</td>
+              <td>{{ customer.date_created }}</td>
+              <td>{{ customer.last_edited }}</td>
+              </tr>
+
+          </tbody>
+        </table>
+
+        <!-- Customer Utilities Information Table -->
+        <h2>Customer Utilities Information</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Utilities ID</th> <!-- New column -->
+              <th>Customer ID</th>
+              <th>Billing Date</th>
+              <th>Electric Rate</th>
+              <th>Water Rate</th>
+              <th>Rent Rate</th>
+              <th>Prev. Electric Reading</th>
+              <th>Curr. Electric Reading</th>
+              <th>Prev. Water Reading</th>
+              <th>Curr. Water Reading</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let utilities of utilities">
+              <td>{{ utilities.utilities_id }}</td>
+              <td>{{ utilities.customer_id }}</td>
+              <td>{{ utilities.billing_date }}</td>
+              <td>{{ utilities.electric_rate}}</td>
+              <td>{{ utilities.water_rate }}</td>
+              <td>{{ utilities.rent_rate }}</td>
+              <td>{{ utilities.eprev_read }}</td>
+              <td>{{ utilities.ecurr_read }}</td>
+              <td>{{ utilities.wprev_read }}</td>
+              <td>{{ utilities.wcurr_read }}</td>
+              
+            
+          </tbody>
+        </table>
+
+        <!-- Customer Billing Information Table -->
+        <h2>Customer Billing Information</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Billing ID</th>
+              <th>Utilities ID</th>
+              <th>Customer ID</th>
+              <th>Total Amount</th>
+              <th>Rent Amount</th>
+              <th>Electric Bill</th>
+              <th>Water Bill</th>
+              <th>Billing Cycle Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let billing of billing">
+              <td>{{ billing.billing_id }}</td>
+              <td>{{ billing.utilities_id }}</td>
+              <td>{{ billing.customer_id }}</td>
+              <td>{{ billing.total_amount}}</td>
+              <td>{{ billing.rent_amount }}</td>
+              <td>{{ billing.electric_bill }}</td>
+              <td>{{ billing.water_bill }}</td>
+              <td>{{ billing.billing_cycle_date }}</td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+

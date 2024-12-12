@@ -1,0 +1,231 @@
+
+
+.navbar {
+  font-family: 'Arial', sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333; /* Black background */
+  color: white;
+  padding: 15px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-brand a {
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  transition: color 0.3s;
+}
+
+.navbar-brand a:hover {
+  color: #4caf50; /* Green highlight */
+}
+
+/* Navbar Links */
+.navbar-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+.navbar-links li a:hover {
+  color: #4caf50; /* Green highlight on hover */
+}
+
+/* Navbar Actions (Buttons) */
+.navbar-actions button {
+  background-color: #4caf50; /* Green background */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.navbar-actions button:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fc;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Flexbox layout for form and table side by side */
+.form-and-table {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap; /* Allow wrapping when screen size is small */
+}
+
+/* Form Section - Update Utilities */
+.form-container {
+  flex: 1;
+  min-width: 280px;
+  background-color: #f4f4f4; /* Light background */
+  color: #333; /* Dark text */
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-container h2 {
+  background-color: #333; /* Dark header */
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  margin: -20px -20px 20px -20px; /* Pull header out to the edges */
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #555; /* Dark grey text for labels */
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  background-color: #fff; /* Light input fields */
+  color: #333; /* Dark text inside input fields */
+}
+
+input[type="date"], input[type="number"] {
+  width: auto;
+}
+
+.form-group input, .form-group select {
+  margin-top: 8px;
+}
+
+/* Red submit button */
+.form-submit {
+  background-color: #f44336; /* Red background */
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.form-submit:hover {
+  background-color: #e53935; /* Darker red on hover */
+}
+
+/* Table Section */
+.table-container {
+  flex: 2;
+  min-width: 600px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 30px;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  font-size: 16px;
+}
+
+th {
+  background-color: #333; /* Dark background */
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+td {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+tr:nth-child(even) td {
+  background-color: #e2e2e2;
+}
+
+tr:hover td {
+  background-color: #d1d1d1;
+}
+
+.status-active {
+  color: green;
+}
+
+.status-inactive {
+  color: red;
+}
+
+.status-pending {
+  color: orange;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .form-and-table {
+    flex-direction: column;
+  }
+
+  .form-container, .table-container {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .form-submit {
+    padding: 10px;
+  }
+}
