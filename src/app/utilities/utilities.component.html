@@ -1,0 +1,84 @@
+
+<body>
+    <div class="container">
+<nav class="navbar">
+    <div class="navbar-brand">
+      <a href="#">Utility Manager</a>
+    </div>
+  
+    <ul class="navbar-links">
+      <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+      <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
+      <li><a routerLink="/anchor/billing" routerLinkActive="active" ariaCurrentWhenActive="page">Billing</a></li>
+      <li><a routerLink="/anchor/utilities" routerLinkActive="active" ariaCurrentWhenActive="page">Utlities</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
+  </nav>
+
+   <!-- Customer Utilities Information Table -->
+   <h2>Customer Utilities Information</h2>
+   <table>
+     <thead>
+       <tr>
+         <th>Utilities ID</th> <!-- New column -->
+         <th>Customer ID</th>
+         <th>Billing Date</th>
+         <th>Electric Rate</th>
+         <th>Water Rate</th>
+         <th>Rent Rate</th>
+         <th>Prev. Electric Reading</th>
+         <th>Curr. Electric Reading</th>
+         <th>Prev. Water Reading</th>
+         <th>Curr. Water Reading</th>
+         <th>Delete</th>
+         <th>Update</th>
+         <th></th>
+         <th></th>
+       </tr>
+     </thead>
+     <tbody>
+      
+       <tr *ngFor="let row of utilities">
+         <td>{{ row.utilities_id }}</td>
+
+         <td>{{ row.customer_id }}</td>
+
+         <td *ngIf="!row.editable">{{ row.billing_date }}</td>
+         <td *ngIf="row.editable"><input [(ngModel)] ="row.billing_date" [class.invalid]="!row.billing_date && formSubmitted" required></td>
+
+
+         <td *ngIf="!row.editable">{{ row.electric_rate}}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.electric_rate" [class.invalid]="!row.electric_rate && formSubmitted" required></td>
+
+
+         <td *ngIf="!row.editable">{{ row.water_rate }}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.water_rate" [class.invalid]="!row.water_rate && formSubmitted" required></td>
+
+         <td *ngIf="!row.editable">{{ row.rent_rate }}</td>
+         
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.rent_rate" [class.invalid]="!row.rent_rate && formSubmitted" required></td>
+
+         <td *ngIf="!row.editable">{{ row.eprev_read }}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.eprev_read" [class.invalid]="!row.eprev_read && formSubmitted" required></td>
+
+         <td *ngIf="!row.editable">{{ row.ecurr_read }}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.ecurr_read" [class.invalid]="!row.ecurr_read && formSubmitted" required></td> 
+
+         <td *ngIf="!row.editable">{{ row.wprev_read }}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wprev_read" [class.invalid]="!row.wprev_read && formSubmitted" required></td>
+
+         <td *ngIf="!row.editable">{{ row.wcurr_read }}</td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wcurr_read" [class.invalid]="!row.wcurr_read && formSubmitted" required></td>
+
+
+         <td> <button (click)="deleteUtilities(row.utilities_id.toString())" class="form-delete">Delete</button></td>
+         <td> <button *ngIf="!row.editable" (click)="editRow(row)" class="form-update">Update</button></td>
+          <td><button *ngIf="row.editable" (click)="saveRow(row);saveBilling(row)"class="form-update">Save</button></td>
+          <td><button *ngIf="row.editable" (click)="cancelEdit(row)"class="form-delete">Cancel</button></td>
+       
+        
+     </tbody>
+   </table>

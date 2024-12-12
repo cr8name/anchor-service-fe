@@ -1,0 +1,130 @@
+
+<body>
+    <div class="container">
+    <nav class="navbar">
+    <div class="navbar-brand">
+      <a href="#">Utility Manager</a>
+    </div>
+  
+    <ul class="navbar-links">
+      <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+      <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
+      <li><a routerLink="/anchor/billing" routerLinkActive="active" ariaCurrentWhenActive="page">Billing</a></li>
+      <li><a routerLink="/anchor/utilities" routerLinkActive="active" ariaCurrentWhenActive="page">Utlities</a></li>
+    </ul>
+    <div class="navbar-actions">
+      <button>Login</button>
+      <button>Sign Up</button>
+    </div>
+  </nav>
+
+  <div class="form-and-table">
+    <!-- Form Section - Add Customer -->
+    <div class="form-container">  
+      <h2 class="navbar-padding">Add Customer</h2>
+      
+        
+        <form (ngSubmit)="addCustomer()" #customerForm="ngForm">
+          
+        <div class="form-group">
+          <label for="customer_id">Customer ID</label>
+          <input type="text" id="customer_id" [(ngModel)]="newCustomerData.customer_id" name="customer_id" placeholder="Enter Customer ID" required>
+        </div>
+        <div class="form-group">
+          <label for="billing_date">First Name</label>
+          <input type="text" id="first_name"[(ngModel)]="newCustomerData.first_name" name="first_name" placeholder="First Name" required>
+        </div>
+        <div class="form-group">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" [(ngModel)]="newCustomerData.last_name" name="last_name" step="0.01" placeholder="Last Name" required>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" [(ngModel)]="newCustomerData.address" name="address" step="0.01" placeholder="Enter Address" required>
+        </div>
+        <div class="form-group">
+          <label for="current_status">Current Status</label>
+          <input type="text" id="current_status" [(ngModel)]="newCustomerData.current_status" name="current_status" step="0.01" placeholder="Enter Current Status" required>
+        </div>
+        <div class="form-group">
+          <label for="date_created">Date Created</label>
+          <input type="date" id="date_created" [(ngModel)]="newCustomerData.date_created" name="date_created" placeholder="Enter Date Created" required>
+        </div>
+        <!--
+        
+        <div class="form-group">
+          <label for="date_created">Last Edited: {{lste}}</label>
+          <input type="datetime" id="last_edited" [(ngModel)]="newCustomerData.last_edited" name="last_edited" placeholder="{{lste}}">
+        </div>
+
+        -->
+        <!--
+        <button type="submit" (click)="addCustomer()" class="form-submit">Add Customer</button>
+        -->
+
+        <div class="form-group">
+          <label for="date_created">Last Edited:</label>
+          <input type="datetime" id="last_edited" [(ngModel)]="last_edited_holder" name="last_edited">
+        </div>
+        
+        <button type="submit" class="form-submit" [disabled]="!customerForm.valid">Add Customer</button>
+        
+      </form>
+    </div>
+
+    <!-- Table for Customer Information -->
+  <div class="table-container">
+    <h2>Customer Information</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Customer ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Address</th>
+          <th>Current Status</th>
+          <th>Date Created</th>
+          <th>Last Edited</th>
+          <th>Delete</th>
+          <th>Update</th>
+          <th ></th>
+          <th ></th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor="let row of customer">
+          <td>{{ row.customer_id }}</td>
+        
+          <td *ngIf="!row.editable">{{ row.first_name }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.first_name" type="text" pattern="^[a-zA-Z\s]*$" [class.invalid]="!row.first_name && formSubmitted" required>
+
+          <td *ngIf="!row.editable">{{ row.last_name }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.last_name" type="string" [class.invalid]="!row.last_name && formSubmitted"  required>
+
+          <td *ngIf="!row.editable">{{ row.address }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.address" type="string" [class.invalid]="!row.address && formSubmitted" required>
+
+          <td *ngIf="!row.editable">{{ row.current_status }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.current_status" type="string" [class.invalid]="!row.current_status && formSubmitted" required>
+
+          <td *ngIf="!row.editable">{{ row.date_created }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.date_created" type="date" [class.invalid]="!row.date_created && formSubmitted"  required>
+
+          <td *ngIf="!row.editable">{{ row.last_edited }}</td>
+          <td *ngIf="row.editable"><input [(ngModel)]="row.last_edited" type="datetime"[class.invalid]="!row.last_edited && formSubmitted" required>
+
+          <td> <button (click)="deleteCustomer(row.customer_id.toString())" class="form-delete">Delete</button></td>
+          <td> <button *ngIf="!row.editable" (click)="editRow(row)" class="form-update">Update</button></td>
+          <td><button *ngIf="row.editable" (click)="saveRow(row)"class="form-update">Save</button></td>
+          <td><button *ngIf="row.editable" (click)="cancelEdit(row)"class="form-delete">Cancel</button></td>
+          
+
+          </tr>
+      </tbody>
+    </table>
+
+    </div>
+
+    

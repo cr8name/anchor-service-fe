@@ -1,0 +1,58 @@
+<body>
+  
+    <div class="container">
+      <nav class="navbar">
+        <div class="navbar-brand">
+          <a href="#">Utility Manager</a>
+        </div>
+      
+        <ul class="navbar-links">
+          <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+          <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
+          <li><a routerLink="/anchor/billing" routerLinkActive="active" ariaCurrentWhenActive="page">Billing</a></li>
+          <li><a routerLink="/anchor/utilities" routerLinkActive="active" ariaCurrentWhenActive="page">Utlities</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button>Login</button>
+          <button>Sign Up</button>
+        </div>
+      </nav>
+
+       <!-- Customer Billing Information Table -->
+       <h2>Customer Billing Information</h2>
+       <table>
+         <thead>
+           <tr>
+             <th>Billing ID</th>
+             <th>Utilities ID</th>
+             <th>Customer ID</th>
+             <th>Total Amount</th>
+             <th>Rent Amount</th>
+             <th>Electric Bill</th>
+             <th>Water Bill</th>
+             <th>Billing Cycle Date</th>
+             
+             
+             
+           </tr>
+         </thead>
+         <tbody>
+           <tr *ngFor="let billing of billing">
+
+             <td *ngIf="!billing.editable">{{ billing.billing_id }}</td>
+             <td *ngIf="billing.editable">
+              <input [(ngModel)]="billing.billing_id" />
+             <td>{{ billing.utilities_id }}</td>
+             <td>{{ billing.customer_id }}</td>
+             <td>{{ billing.total_amount}}</td>
+             <td>{{ billing.rent_amount }}</td>
+             <td>{{ billing.electric_bill }}</td>
+             <td>{{ billing.water_bill }}</td>
+             <td>{{ billing.billing_cycle_date }}</td>
+             
+            
+          
+             </tr>
+         </tbody>
+       </table>
+     
