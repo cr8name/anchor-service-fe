@@ -3,7 +3,7 @@ import { HomeComponent } from './anchor/home/home.component';
 import { CustomerComponent } from './customer/customer.component';
 import { UtilitiesComponent } from './utilities/utilities.component';
 import { BillingComponent } from './billing/billing.component';
-import { PracComponent } from './prac/prac.component';
+
 
 
 export const routes: Routes = [
@@ -13,5 +13,5 @@ export const routes: Routes = [
     {path:"anchor/customer", component:CustomerComponent},
     {path:"anchor/utilities", component:UtilitiesComponent},
     {path:"anchor/billing", component:BillingComponent},
-    {path:"anchor/prac", component:PracComponent}
+
 ]
