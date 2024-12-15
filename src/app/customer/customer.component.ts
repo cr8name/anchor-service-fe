@@ -115,6 +115,7 @@ newCustomerData = {
 
     formSubmitted: boolean = false;
     saveRow(row: Customer) {
+      
       if (!row.first_name || !row.last_name || !row.address || !row.current_status
         || !row.date_created || !row.last_edited)
        {

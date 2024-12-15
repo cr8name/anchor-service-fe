@@ -79,9 +79,10 @@ saveRow(row: Utilities) {
 
   this.formSubmitted = true;
   // Validate fields
-  if (!row.billing_date || !row.electric_rate || !row.water_rate || !row.electric_rate
-    || !row.water_rate || !row.rent_rate || !row.eprev_read || !row.ecurr_read
-    || !row.wprev_read || !row.wcurr_read)
+  if (!row.billing_date || !row.electric_rate && row.electric_rate>0 || !row.water_rate && row.water_rate>0 
+    || !row.water_rate && row.water_rate> 0|| !row.rent_rate  && row.rent_rate>0|| !row.eprev_read && row.eprev_read>0
+    || !row.ecurr_read && row.ecurr_read>0
+    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0) 
    {
     alert('Please fill all required fields!');
     return;
@@ -131,9 +132,10 @@ saveBilling(row: Utilities) {
   
   this.formSubmitted = true;
 
-  if (!row.billing_date || !row.electric_rate || !row.water_rate || !row.electric_rate
-    || !row.water_rate || !row.rent_rate || !row.eprev_read || !row.ecurr_read
-    || !row.wprev_read || !row.wcurr_read)
+  if (!row.billing_date || !row.electric_rate && row.electric_rate>-1 || !row.water_rate && row.water_rate>0 
+    || !row.water_rate && row.water_rate> 0|| !row.rent_rate  && row.rent_rate>0|| !row.eprev_read && row.eprev_read>0
+    || !row.ecurr_read && row.ecurr_read>0
+    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0) 
    {
     alert('Please fill all required fields!');
     return;
@@ -143,10 +145,10 @@ saveBilling(row: Utilities) {
     billing_id: row.billing_id ,
     utilities_id: row.utilities_id ,
     customer_id: row.customer_id,
-    total_amount:(row.rent_rate+(row.ecurr_read-row.eprev_read)*row.electric_rate)+((row.wcurr_read-row.wprev_read)*row.water_rate),
+    total_amount:(row.rent_rate+(row.ecurr_read-row.eprev_read)*row.electric_rate)+((row.wcurr_read)-row.wprev_read)*Math.abs(row.water_rate),
     rent_amount: row.rent_rate,
-    electric_bill:((row.ecurr_read-row.eprev_read)*row.electric_rate) ,
-    water_bill: ((row.wcurr_read-row.wprev_read)*row.water_rate),
+    electric_bill:(row.ecurr_read-row.eprev_read)*row.electric_rate ,
+    water_bill: (row.wcurr_read-row.wprev_read)*row.water_rate,
     billing_cycle_date:row.billing_date
 
   }

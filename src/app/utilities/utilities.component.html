@@ -47,31 +47,31 @@
          <td>{{ row.customer_id }}</td>
 
          <td *ngIf="!row.editable">{{ row.billing_date }}</td>
-         <td *ngIf="row.editable"><input [(ngModel)] ="row.billing_date" [class.invalid]="!row.billing_date && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input [(ngModel)] ="row.billing_date" [class.invalid]="!row.billing_date && formSubmitted"  required></td>
 
 
          <td *ngIf="!row.editable">{{ row.electric_rate}}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.electric_rate" [class.invalid]="!row.electric_rate && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.electric_rate" [class.invalid]="!row.electric_rate && formSubmitted" min="0" required></td>
 
 
          <td *ngIf="!row.editable">{{ row.water_rate }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.water_rate" [class.invalid]="!row.water_rate && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.water_rate" [class.invalid]="!row.water_rate && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.rent_rate }}</td>
          
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.rent_rate" [class.invalid]="!row.rent_rate && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.rent_rate" [class.invalid]="!row.rent_rate && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.eprev_read }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.eprev_read" [class.invalid]="!row.eprev_read && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.eprev_read" [class.invalid]="!row.eprev_read && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.ecurr_read }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.ecurr_read" [class.invalid]="!row.ecurr_read && formSubmitted" required></td> 
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.ecurr_read" [class.invalid]="!row.ecurr_read && formSubmitted" min="0" required></td> 
 
          <td *ngIf="!row.editable">{{ row.wprev_read }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wprev_read" [class.invalid]="!row.wprev_read && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wprev_read" [class.invalid]="!row.wprev_read && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.wcurr_read }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wcurr_read" [class.invalid]="!row.wcurr_read && formSubmitted" required></td>
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wcurr_read" [class.invalid]="!row.wcurr_read && formSubmitted" min="0" required></td>
 
 
          <td> <button (click)="deleteUtilities(row.utilities_id.toString())" class="form-delete">Delete</button></td>

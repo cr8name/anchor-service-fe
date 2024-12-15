@@ -32,11 +32,11 @@
         </div>
         <div class="form-group">
           <label for="billing_date">First Name</label>
-          <input type="text" id="first_name"[(ngModel)]="newCustomerData.first_name" name="first_name" placeholder="First Name" required>
+          <input type="text" pattern="^[a-zA-Z\s]*$" id="first_name"[(ngModel)]="newCustomerData.first_name" name="first_name" placeholder="First Name" required>
         </div>
         <div class="form-group">
           <label for="last_name">Last Name</label>
-          <input type="text" id="last_name" [(ngModel)]="newCustomerData.last_name" name="last_name" step="0.01" placeholder="Last Name" required>
+          <input type="text" pattern="^[a-zA-Z\s]*$" id="last_name" [(ngModel)]="newCustomerData.last_name" name="last_name" step="0.01" placeholder="Last Name" required>
         </div>
         <div class="form-group">
           <label for="address">Address</label>
@@ -44,7 +44,7 @@
         </div>
         <div class="form-group">
           <label for="current_status">Current Status</label>
-          <input type="text" id="current_status" [(ngModel)]="newCustomerData.current_status" name="current_status" step="0.01" placeholder="Enter Current Status" required>
+          <input type="text" pattern="^[a-zA-Z\s]*$" id="current_status" [(ngModel)]="newCustomerData.current_status" name="current_status" step="0.01" placeholder="Enter Current Status" required>
         </div>
         <div class="form-group">
           <label for="date_created">Date Created</label>
