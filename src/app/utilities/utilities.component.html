@@ -5,7 +5,7 @@
     <div class="navbar-brand">
       <a href="#">Utility Manager</a>
     </div>
-  
+
     <ul class="navbar-links">
       <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
       <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
@@ -18,7 +18,58 @@
     </div>
   </nav>
 
+      <!-- Flex container for form and table side by side -->
+      <div class="form-and-table">
+
+        <!-- Form Section - Update Utilities -->
+        <div class="form-container">
+
+          <h2 class="navbar-padding">Update Utilities</h2>
+
+          <form (ngSubmit)="onSubmit()" #utilitiesForm="ngForm">
+            <div class="form-group">
+              <label for="customer_id">Customer ID</label>
+              <input type="text" id="customer_id" name="customer_id" [(ngModel)]="utilityData.customer_id" placeholder="Enter Customer ID" required>
+            </div>
+            <div class="form-group">
+              <label for="billing_date">Billing Date</label>
+              <input type="date" id="billing_date" name="billing_date" [(ngModel)]="utilityData.billing_date" required>
+            </div>
+            <div class="form-group">
+              <label for="electric_rate">Electric Rate</label>
+              <input type="number" id="electric_rate" name="electric_rate" [(ngModel)]="utilityData.electric_rate" step="0.01" placeholder="Enter Electric Rate" required>
+            </div>
+            <div class="form-group">
+              <label for="water_rate">Water Rate</label>
+              <input type="number" id="water_rate" name="water_rate" [(ngModel)]="utilityData.water_rate" step="0.01" placeholder="Enter Water Rate" required>
+            </div>
+            <div class="form-group">
+              <label for="rent_rate">Rent Rate</label>
+              <input type="number" id="rent_rate" name="rent_rate" [(ngModel)]="utilityData.rent_rate" step="0.01" placeholder="Enter Rent Rate" required>
+            </div>
+            <div class="form-group">
+              <label for="eprev_read">Previous Electric Reading</label>
+              <input type="number" id="eprev_read" name="eprev_read" [(ngModel)]="utilityData.eprev_read" placeholder="Enter Previous Electric Reading" required>
+            </div>
+            <div class="form-group">
+              <label for="ecurr_read">Current Electric Reading</label>
+              <input type="number" id="ecurr_read" name="ecurr_read" [(ngModel)]="utilityData.ecurr_read" placeholder="Enter Current Electric Reading" required>
+            </div>
+            <div class="form-group">
+              <label for="wprev_read">Previous Water Reading</label>
+              <input type="number" id="wprev_read" name="wprev_read" [(ngModel)]="utilityData.wprev_read" placeholder="Enter Previous Water Reading" required>
+            </div>
+            <div class="form-group">
+              <label for="wcurr_read">Current Water Reading</label>
+              <input type="number" id="wcurr_read" name="wcurr_read" [(ngModel)]="utilityData.wcurr_read" placeholder="Enter Current Water Reading" required>
+            </div>
+            <button type="submit" class="form-submit" [disabled]="!utilitiesForm.form.valid">Submit</button>
+          </form>
+        </div>
+
+
    <!-- Customer Utilities Information Table -->
+        <div class="table-container">
    <h2>Customer Utilities Information</h2>
    <table>
      <thead>
@@ -40,7 +91,7 @@
        </tr>
      </thead>
      <tbody>
-      
+
        <tr *ngFor="let row of utilities">
          <td>{{ row.utilities_id }}</td>
 
@@ -58,14 +109,14 @@
          <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.water_rate" [class.invalid]="!row.water_rate && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.rent_rate }}</td>
-         
+
          <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.rent_rate" [class.invalid]="!row.rent_rate && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.eprev_read }}</td>
          <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.eprev_read" [class.invalid]="!row.eprev_read && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.ecurr_read }}</td>
-         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.ecurr_read" [class.invalid]="!row.ecurr_read && formSubmitted" min="0" required></td> 
+         <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.ecurr_read" [class.invalid]="!row.ecurr_read && formSubmitted" min="0" required></td>
 
          <td *ngIf="!row.editable">{{ row.wprev_read }}</td>
          <td *ngIf="row.editable"><input type="number" [(ngModel)] ="row.wprev_read" [class.invalid]="!row.wprev_read && formSubmitted" min="0" required></td>
@@ -78,7 +129,11 @@
          <td> <button *ngIf="!row.editable" (click)="editRow(row)" class="form-update">Update</button></td>
           <td><button *ngIf="row.editable" (click)="saveRow(row);saveBilling(row)"class="form-update">Save</button></td>
           <td><button *ngIf="row.editable" (click)="cancelEdit(row)"class="form-delete">Cancel</button></td>
-       
-        
+
+       </tr>
      </tbody>
    </table>
+    </div>
+</div>
+    </div>
+
