@@ -56,7 +56,7 @@ updateUtilityData ={
     ecurr_read:0,
     wprev_read:0,
     wcurr_read:0
-  
+
 }
 updateBillingData ={
     billing_id:0 ,
@@ -79,10 +79,10 @@ saveRow(row: Utilities) {
 
   this.formSubmitted = true;
   // Validate fields
-  if (!row.billing_date || !row.electric_rate && row.electric_rate>0 || !row.water_rate && row.water_rate>0 
+  if (!row.billing_date || !row.electric_rate && row.electric_rate>0 || !row.water_rate && row.water_rate>0
     || !row.water_rate && row.water_rate> 0|| !row.rent_rate  && row.rent_rate>0|| !row.eprev_read && row.eprev_read>0
     || !row.ecurr_read && row.ecurr_read>0
-    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0) 
+    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0)
    {
     alert('Please fill all required fields!');
     return;
@@ -112,13 +112,13 @@ saveRow(row: Utilities) {
       alert('Utility Updated successfully!');
     },
     (error)=>{
-     
+
       console.log('Error updating Utility', error)
       alert('Failed to update Utility, please try again')
     }
 
   )
-  
+
   console.log('Updated row:', row);
 }
 
@@ -129,13 +129,13 @@ cancelEdit(row: Utilities) {
 }
 
 saveBilling(row: Utilities) {
-  
+
   this.formSubmitted = true;
 
-  if (!row.billing_date || !row.electric_rate && row.electric_rate>-1 || !row.water_rate && row.water_rate>0 
+  if (!row.billing_date || !row.electric_rate && row.electric_rate>-1 || !row.water_rate && row.water_rate>0
     || !row.water_rate && row.water_rate> 0|| !row.rent_rate  && row.rent_rate>0|| !row.eprev_read && row.eprev_read>0
     || !row.ecurr_read && row.ecurr_read>0
-    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0) 
+    || !row.wprev_read && row.wprev_read>0|| !row.wcurr_read && row.wcurr_read>0)
    {
     alert('Please fill all required fields!');
     return;
@@ -163,5 +163,30 @@ saveBilling(row: Utilities) {
     }
   )
 }
+
+  utilityData = {
+    customer_id: '',
+    billing_date: '',
+    electric_rate: null,
+    water_rate: null,
+    rent_rate: null,
+    eprev_read: null,
+    ecurr_read: null,
+    wprev_read: null,
+    wcurr_read: null,
+  }
+
+  onSubmit() {
+    this.anchorService.saveUtilities(this.utilityData).subscribe(
+      (response) => {
+        console.log('Data saved successfully:', response);
+        alert('Utilities updated successfully!');
+      },
+      (error) => {
+        console.error('Error saving data:', error);
+        alert('Failed to update utilities. Please try again.');
+      }
+    );
+  }
 
 }

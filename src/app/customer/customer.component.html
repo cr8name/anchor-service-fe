@@ -5,7 +5,7 @@
     <div class="navbar-brand">
       <a href="#">Utility Manager</a>
     </div>
-  
+
     <ul class="navbar-links">
       <li><a routerLink="/anchor/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
       <li><a routerLink="/anchor/customer" routerLinkActive="active" ariaCurrentWhenActive="page">Customer</a></li>
@@ -20,18 +20,18 @@
 
   <div class="form-and-table">
     <!-- Form Section - Add Customer -->
-    <div class="form-container">  
+    <div class="form-container">
       <h2 class="navbar-padding">Add Customer</h2>
-      
-        
+
+
         <form (ngSubmit)="addCustomer()" #customerForm="ngForm">
-          
+
         <div class="form-group">
           <label for="customer_id">Customer ID</label>
           <input type="text" id="customer_id" [(ngModel)]="newCustomerData.customer_id" name="customer_id" placeholder="Enter Customer ID" required>
         </div>
         <div class="form-group">
-          <label for="billing_date">First Name</label>
+          <label for="first_name">First Name</label>
           <input type="text" pattern="^[a-zA-Z\s]*$" id="first_name"[(ngModel)]="newCustomerData.first_name" name="first_name" placeholder="First Name" required>
         </div>
         <div class="form-group">
@@ -51,7 +51,7 @@
           <input type="date" id="date_created" [(ngModel)]="newCustomerData.date_created" name="date_created" placeholder="Enter Date Created" required>
         </div>
         <!--
-        
+
         <div class="form-group">
           <label for="date_created">Last Edited: {{lste}}</label>
           <input type="datetime" id="last_edited" [(ngModel)]="newCustomerData.last_edited" name="last_edited" placeholder="{{lste}}">
@@ -66,9 +66,9 @@
           <label for="date_created">Last Edited:</label>
           <input type="datetime" id="last_edited" [(ngModel)]="last_edited_holder" name="last_edited">
         </div>
-        
+
         <button type="submit" class="form-submit" [disabled]="!customerForm.valid">Add Customer</button>
-        
+
       </form>
     </div>
 
@@ -89,14 +89,14 @@
           <th>Update</th>
           <th ></th>
           <th ></th>
-          
+
         </tr>
       </thead>
       <tbody>
-        
+
         <tr *ngFor="let row of customer">
           <td>{{ row.customer_id }}</td>
-        
+
           <td *ngIf="!row.editable">{{ row.first_name }}</td>
           <td *ngIf="row.editable"><input [(ngModel)]="row.first_name" type="text" pattern="^[a-zA-Z\s]*$" [class.invalid]="!row.first_name && formSubmitted" required>
 
@@ -119,7 +119,7 @@
           <td> <button *ngIf="!row.editable" (click)="editRow(row)" class="form-update">Update</button></td>
           <td><button *ngIf="row.editable" (click)="saveRow(row)"class="form-update">Save</button></td>
           <td><button *ngIf="row.editable" (click)="cancelEdit(row)"class="form-delete">Cancel</button></td>
-          
+
 
           </tr>
       </tbody>
@@ -127,4 +127,5 @@
 
     </div>
 
-    
+  </div>
+    </div>
